@@ -10,19 +10,19 @@ namespace Bank.Domain.Entities
     {
         public Guid Id { get; protected set; }
         public bool IsActive { get; protected set; }
-        public DateTime CreateAt { get; protected set; }
-        public DateTime? UpdateAt { get; protected set; }
+        public DateTime CreatedAt { get; protected set; }
+        public DateTime? UpdatedAt { get; protected set; }
 
         public BaseEntity()
         {
             Id = Guid.NewGuid();
             IsActive = true;
-            CreateAt = DateTime.UtcNow;
+            CreatedAt = DateTime.UtcNow;
         }
         protected void Delete()
         {
             IsActive = false;
-            UpdateAt = DateTime.UtcNow;
+            UpdatedAt = DateTime.UtcNow;
         }
     }
 }

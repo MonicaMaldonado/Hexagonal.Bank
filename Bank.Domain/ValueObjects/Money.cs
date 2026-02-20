@@ -1,6 +1,4 @@
-﻿
-
-namespace Bank.Domain.Entities;
+﻿namespace Bank.Domain.ValueObjects;
 
 public record Money
 {
@@ -15,8 +13,8 @@ public record Money
 
         if (amount <= 0) throw new ArgumentOutOfRangeException("Amount cannot be negative or zero", nameof(amount));
 
-        this.Currency = currency;
-        this.Amount = amount;
+        Currency = currency;
+        Amount = amount;
     }
 
     public static Money Create(string currency, decimal amount)

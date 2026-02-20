@@ -12,6 +12,13 @@ public class Customer : BaseEntity
     public IdentityDocument Document { get; private set; }//private set es igual que un init
 
     public CustomerStatus Status { get; private set; }
+    public string Email { get; private set; }
+
+    //Instancia para navegar a las relaciones que se tiene con entity framework
+    private readonly List<Loan> _loans = new();
+    //Instancia publica para poder obtener el valor que me esta devolviendo entity framework
+    public IReadOnlyCollection<Loan> Loans => _loans.AsReadOnly();
+
 
     private Customer() { }
 
@@ -20,7 +27,7 @@ public class Customer : BaseEntity
     es decir se agregan propiedades o metodos dentro de la misma entidad*/
 
     /*Agregate root hacen referencia a la entidad rica, es el conjungo de agregados de una entidad, es el todo de una entidad */
-    private Customer(string name, string lastName, IdentityDocument document)
+    private Customer(string name, string lastName, IdentityDocument document, string email)
     {
         if (string.IsNullOrWhiteSpace(name)) throw new ArgumentNullException("Name cannot be null or empty", nameof(name));
 
@@ -31,12 +38,13 @@ public class Customer : BaseEntity
         Name = name;
         LastName = lastName;
         Document = document;
+        Email = email;
     }
 
 
-    public static Customer Create(string name, string lastName, IdentityDocument document)
+    public static Customer Create(string name, string lastName, IdentityDocument document, string email)
     {        
-        return new Customer(name, lastName, document);
+        return new Customer(name, lastName, document, email);
     }
 
 
