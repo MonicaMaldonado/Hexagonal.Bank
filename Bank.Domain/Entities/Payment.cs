@@ -51,10 +51,10 @@ namespace Bank.Domain.Entities
             var paid = PaidAmount.Amount ?? 0;
             var total = Total.Amount ?? 0;
 
-            if (paid == total)
+            if (paid >= total)
                 Status = PaymentStatus.Paid;
             else if (paid > 0 && paid < total)
-                Status |= PaymentStatus.PartiallyPaid;
+                Status = PaymentStatus.PartiallyPaid;
 
         }
     }
