@@ -1,0 +1,16 @@
+
+services: 
+  postgresql_hexagonal:
+    image: postgres:15-alpine
+    container_name: bd_banking
+    restart: always
+    environment: 
+      POSTGRES_USER: "admin"
+      POSTGRES_PASSWORD: "123456"
+      POSTGRES_DB: "bd_banking"
+    ports: 
+      - "1502:5432"
+    volumes: 
+      - "C:/Usuarios/monica.maldonado/Escritorio/Docker/Volumes/hexagonal_postgresqll:/var/lib/postgresql/data"
+    
+    
