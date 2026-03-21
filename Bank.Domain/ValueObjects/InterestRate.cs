@@ -15,7 +15,7 @@ namespace Bank.Domain.ValueObjects
         private InterestRate(decimal value)
         {
             if (value < 1) throw new ArgumentException("Interest rate must be greater or equal to 1", nameof(value));
-            value = Value;
+            Value = value;
         }
 
         public static InterestRate Create(decimal value)

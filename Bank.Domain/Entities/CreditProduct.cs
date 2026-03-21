@@ -38,7 +38,7 @@ namespace Bank.Domain.Entities
             Description = description;
             MinimumAmount = minimumAmount;
             MaximumAmount = maximumAmount;
-            MaximumTerm = minimunTerm;
+            MinimumTerm = minimunTerm;
             MaximumTerm = maximumTerm;
             AnnualInterestRate = annualInterestRate;
         }
