@@ -1,5 +1,5 @@
 ﻿using Bank.Application.Dto.Request;
-using Bank.Application.Ports.CredictProduct;
+using Bank.Application.Ports.CredictProductUseCase;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

@@ -1,5 +1,6 @@
 ﻿using Bank.Application.Dto.Request;
-using Bank.Application.Ports.CredictProduct;
+using Bank.Application.Ports.CredictProductUseCase;
+using Bank.Application.Results;
 using Bank.Domain.Entities;
 using Bank.Domain.Ports.Repositories;
 using Bank.Domain.Ports.Services;
@@ -19,8 +20,12 @@ public class CreateCreditProductUseCase : ICreateCredictProductUseCase
         _unitOfWork = unitOfWork;
     }
 
-    public async Task ExecuteAsyn(CreateCredictProductRequest request)
+    public async Task<Result<CreditProduct>> ExecuteAsyn(CreateCredictProductRequest request)
     {
+
+        if (request == null)
+            return Result<CreditProduct>.Fail("Request cannot be null", 400);
+
         var credictProduct = CreditProduct.Create(
             name: request.Name,
             description: request.Description,
@@ -31,7 +36,9 @@ public class CreateCreditProductUseCase : ICreateCredictProductUseCase
             annualInterestRate: InterestRate.Create(request.AnnualInterestRate)
             );
 
-        await _creditProductRepository.AddAsync(credictProduct);
+        var result = await _creditProductRepository.AddAsync(credictProduct);
         await _unitOfWork.SaveChangeAsync();
+
+        return Result<CreditProduct>.Ok("Producto crediticio registrado exitosamente",result); ;
     }
 }
